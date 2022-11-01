@@ -11,6 +11,10 @@ Node* Tree::search(string str)
 	while()
 	return null;
 }
+void Tree::addResponse(string father, string son)
+{
+	while()
+}
 #include "Tree.h"
 
 Tree::~Tree()

@@ -9,4 +9,5 @@ class Node
 public:
 	string content;
 	list <Node> responses;
+	
 };

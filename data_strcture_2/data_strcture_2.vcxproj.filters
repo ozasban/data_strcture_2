@@ -24,6 +24,9 @@
     <ClCompile Include="treeList.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Node.h">

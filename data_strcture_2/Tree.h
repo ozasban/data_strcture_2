@@ -5,16 +5,17 @@
 #include"Node.h"
 using namespace std;
 /*oz asban 207565607
-binymin shapira  
+binymin shapira 208965863
 data structure 2 exercise 1
 class for tree .h*/
 
 class Tree//tree of discussins
 {
-	Node* discussion;
 public:
+	Node* discussion;
+
 	//ctor,dtor
-	Tree();
+	Tree(string s);
 	~Tree();
 	//functions
 	void buildNewRoot(string title);

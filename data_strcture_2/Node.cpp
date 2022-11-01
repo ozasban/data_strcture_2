@@ -4,29 +4,99 @@
 #include <list>
 using namespace std;
 
+/*oz asban 207565607
+binymin shapira
+data structure 2 exercise 1
+class for node .cpp*/
 
 
-Node* Node::searchRec(list<Node>::iterator it , string str)
+//searching title in node
+Node* Node::searchRec(list<Node>::iterator itb , list<Node>::iterator ite, string str)
 {
-	if (it->content.empty())
+	if (itb->content.empty())//empty node
 	{
 		return nullptr;
 	}
 	else
 	{
-		if (it->content == str)
-			return &(*it);
+		if (itb->content == str)//if found return pointer
+			return &(*itb);
+		//reqursive call to serche in the respons
+		Node* tNode = searchRec(itb->responses.begin(), itb->responses.end(), str);
 
-		Node* tNode = searchRec(it->responses.begin(), str);
-
-		if (tNode)
+		if (tNode)//if was found
 		{
 			return tNode;
 		}
 
-		//auto it1 =  it->responses.begin();
+		if (itb == ite)//if we are in the end of the list
+		{
+			return nullptr;
+		}
 
-		return searchRec( it++, str);
+		return searchRec( itb++, ite,str);//searc in the next node
 
+	}
+}
+//printing the node and his respons in hierarchcal way(tab for the hirarchical)
+void Node::printNode(list<Node>::iterator itb, list<Node>::iterator ite,int tab)
+{
+	if (itb->content.empty())//if empty return
+	{
+		return ;
+	}
+	else
+	{
+		for (int i = 0; i < tab; i++)//print the amount of tubs that needed
+		{
+			cout << '\t';
+		}
+		cout << itb->content<<endl;//print the respons
+	}
+	if(!(itb->responses.empty()))//check if there are respons
+		printNode(itb->responses.begin(), itb->responses.end(), tab + 1);//print the respons for this node
+
+	if (itb == ite)//check that the list didnt over
+	{
+		return;
+	}
+	else
+	{
+		printNode(itb++, ite, tab);//print the next node
+	}
+}
+//the same like print node but with cecking condition to stop printing
+void Node::printNodeIf(list<Node>::iterator itb, list<Node>::iterator ite, int tab, string str)
+{
+	if (itb->content.empty())
+	{
+		return;
+	}
+	else if(itb->content==str)//check the condition
+	{
+		for (int i = 0; i < tab; i++)
+		{
+			cout << '\t';
+		}
+		cout << itb->content << endl;
+		return;
+	}
+	else 
+	{
+		for (int i = 0; i < tab; i++)
+		{
+			cout << '\t';
+		}
+		cout << itb->content << endl;
+	}
+	printNode(itb->responses.begin(), ite, tab + 1);
+
+	if (itb == ite)
+	{
+		return;
+	}
+	else
+	{
+		printNode(itb++, ite, tab);
 	}
 }

@@ -6,6 +6,7 @@ using namespace std;
 
 class Node
 {
+public:
 	string content;
 	list <Node> responses;
 };

@@ -9,5 +9,7 @@ class Node
 public:
 	string content;
 	list <Node> responses;
+	Node* search(string str);
+	Node* searchRec(list<Node>::iterator it, string str);
 	
 };

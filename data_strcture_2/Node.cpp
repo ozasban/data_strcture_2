@@ -10,6 +10,11 @@ data structure 2 exercise 1
 class for node .cpp*/
 
 
+Node::Node(string s)
+{
+	content = s;
+}
+
 //searching title in node
 Node* Node::searchRec(list<Node>::iterator itb , list<Node>::iterator ite, string str)
 {
@@ -41,7 +46,7 @@ Node* Node::searchRec(list<Node>::iterator itb , list<Node>::iterator ite, strin
 //printing the node and his respons in hierarchcal way(tab for the hirarchical)
 void Node::printNode(list<Node>::iterator itb, list<Node>::iterator ite,int tab)
 {
-	if (itb->content.empty())//if empty return
+	if (itb==ite|| itb->content.empty())//if empty return
 	{
 		return ;
 	}
@@ -49,7 +54,7 @@ void Node::printNode(list<Node>::iterator itb, list<Node>::iterator ite,int tab)
 	{
 		for (int i = 0; i < tab; i++)//print the amount of tubs that needed
 		{
-			cout << '\t';
+			cout << "   ";
 		}
 		cout << itb->content<<endl;//print the respons
 	}
@@ -62,13 +67,13 @@ void Node::printNode(list<Node>::iterator itb, list<Node>::iterator ite,int tab)
 	}
 	else
 	{
-		printNode(itb++, ite, tab);//print the next node
+		printNode(++itb, ite, tab);//print the next node
 	}
 }
-//the same like print node but with cecking condition to stop printing
+//the same like print node but with checking condition to stop printing
 void Node::printNodeIf(list<Node>::iterator itb, list<Node>::iterator ite, int tab, string str)
 {
-	if (itb->content.empty())
+	if (itb == ite || itb->content.empty())
 	{
 		return;
 	}
@@ -76,7 +81,7 @@ void Node::printNodeIf(list<Node>::iterator itb, list<Node>::iterator ite, int t
 	{
 		for (int i = 0; i < tab; i++)
 		{
-			cout << '\t';
+			cout << "   ";
 		}
 		cout << itb->content << endl;
 		return;
@@ -85,7 +90,7 @@ void Node::printNodeIf(list<Node>::iterator itb, list<Node>::iterator ite, int t
 	{
 		for (int i = 0; i < tab; i++)
 		{
-			cout << '\t';
+			cout << "   ";
 		}
 		cout << itb->content << endl;
 	}

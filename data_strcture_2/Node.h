@@ -15,6 +15,7 @@ public:
 	string content;
 	list <Node> responses;
 	//functions
+	Node(string s);
 	Node* searchRec(list<Node>::iterator itb, list<Node>::iterator ite,string str);
 	void printNode(list<Node>::iterator itb, list<Node>::iterator ite,int tab);
 	void printNodeIf(list<Node>::iterator itb, list<Node>::iterator ite, int tab, string str);

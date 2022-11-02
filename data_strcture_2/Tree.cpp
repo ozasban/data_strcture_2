@@ -8,11 +8,9 @@ binymin shapira 208965863
 data structure 2 exercise 1
 class for tree .cpp*/
 
-Tree::Tree(string s)//ctor
+Tree::Tree(string s) //ctor
 {
-	this->discussion->content = s;
-	this->discussion = new Node();
-
+	this->discussion = new Node(s);
 }
 
 Node* Tree::search(string str)//searching string in the tree
@@ -37,10 +35,9 @@ Node* Tree::search(string str)//searching string in the tree
 void Tree::addResponse(string father, string son)//adding respons (son) to the node that comtent father
 {
 	Node* dad = this->search(father);//return pointer to the father
-	if (!dad)//adding the respons
+	if (dad!=nullptr)//adding the respons
 	{
-		Node newSon; 
-		newSon.content = son;
+		Node newSon(son);
 		dad->responses.push_back(newSon);
 	}
 }

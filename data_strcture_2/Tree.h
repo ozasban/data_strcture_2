@@ -23,6 +23,6 @@ public:
 	void addResponse( string father, string son);
 	void delSubTree(string str);
 	void printTree();
-	void searchPrintRoot(string str);
+	void searchPrintRoot(string str);//need to fix
 	void searchPrintLeaf(string str);
 };

@@ -45,3 +45,4 @@ int main()
 		default: cout << "ERROR\n";  break;
 		}
 	} while (ch != 'e');
+}

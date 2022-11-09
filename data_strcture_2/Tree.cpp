@@ -37,7 +37,7 @@ void Tree::addResponse(string father, string son)//adding respons (son) to the n
 	Node* dad = this->search(father);//return pointer to the father
 	if (dad!=nullptr)//adding the respons
 	{
-		Node newSon(son);
+		Node* newSon =new Node(son);
 		dad->responses.push_back(newSon);
 	}
 }
@@ -49,6 +49,8 @@ void Tree::delSubTree(string str)//delete the sub tree with the str content
 	{
 		root->responses.clear();
 		root->content.clear();
+		delete root;
+		root = nullptr;
 	}
 }
 

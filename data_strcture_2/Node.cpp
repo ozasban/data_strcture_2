@@ -15,6 +15,11 @@ Node::Node(string s)
 	content = s;
 }
 
+Node::~Node()
+{
+
+}
+
 //searching title in node
 Node* Node::searchRec(list<Node>::iterator itb , list<Node>::iterator ite, string str)
 {
@@ -103,5 +108,30 @@ void Node::printNodeIf(list<Node>::iterator itb, list<Node>::iterator ite, int t
 	else
 	{
 		printNode(itb++, ite, tab);
+	}
+}
+
+void Node::printNodeToRoot(list<Node>::iterator itb, list<Node>::iterator ite, string str)
+{
+	if (itb->content.empty())//empty node
+	{
+		return;
+	}
+	else
+	{
+		if (itb->content == str)//if found return pointer
+		{
+			cout << str << "=> ";
+			return;
+		}
+
+		//reqursive call to serche in the respons
+		if (!itb->responses.empty())
+		{
+			printNodeToRoot(itb->responses.begin(), itb->responses.end(), str);
+			cout << itb->content<< "=> ";
+			return;
+		}
+
 	}
 }

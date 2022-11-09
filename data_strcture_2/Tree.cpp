@@ -45,10 +45,10 @@ void Tree::addResponse(string father, string son)//adding respons (son) to the n
 void Tree::delSubTree(string str)//delete the sub tree with the str content
 {
 	Node* root = search(str);//search the node withe the wanted content
-	if (!root)//delete
+	if (root!=nullptr)//delete
 	{
-		delete root;
-		root = nullptr;
+		root->responses.clear();
+		root->content.clear();
 	}
 }
 
@@ -71,21 +71,9 @@ void Tree::searchPrintRoot(string str)//search title in the tree and print all t
 {
 	if (search(str))//check if the node exist
 	{
-		if (this->discussion->content.empty())//return if empty
-		{
-			return;
-		}
-		else if(this->discussion->content==str)//if the wanted title is in the root
-		{
-			cout << this->discussion->content<<endl;
-			return;
-		}
-		else//if the title is not in the root, print the root and continue to the respons
-		{
-			cout << this->discussion->content << endl;
-		}
-		//reqursive func to print all comments until find the title(include)
-		this->discussion->printNodeIf(this->discussion->responses.begin(), this->discussion->responses.end(), 1,str);
+		Node* subtree = search(str);
+		cout << subtree->content<<endl;
+		subtree->printNode(subtree->responses.begin(), subtree->responses.end(), 1);
 	}
 }
 
@@ -94,10 +82,23 @@ void Tree::searchPrintLeaf(string str)//print the sub tree of wantwd title
 	Node* subTree = search(str);//pointer to the wanted tree
 	if (subTree)//if the node exist
 	{
-		cout << subTree->content << endl;//print root
-		subTree->printNode(subTree->responses.begin(), subTree->responses.end(), 1);//print sub tree
+
+		if (this->discussion->content == str)//if the root is the wanted str
+		{
+			cout << str;
+			return;
+		}
+		if (this->discussion->responses.empty())//if there are no respons return null
+		{
+			return;
+		}
+		else//search in the respons
+		{
+			//reqursiv search function for node..returns pointer to the node
+			this->discussion->printNodeToRoot(this->discussion->responses.begin(), this->discussion->responses.end(), str);
+			cout << this->discussion->content<<endl;
+		}
 	}
-	return;
 }
 
 

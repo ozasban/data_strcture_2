@@ -33,8 +33,9 @@ void treeList::searchAndPrint(string val)
 {
 	for (auto it = trees.begin(); it != trees.end(); it++)
 	{
-		(*it)->searchPrintLeaf(val);//print from "val" until leaf
-		(*it)->searchPrintRoot(val);//print until "val" froom root
+		(*it)->searchPrintRoot(val);//print from "val" until leaf
+		(*it)->searchPrintLeaf(val);// print until root froom val
+		
 	} 
 }
 
@@ -97,7 +98,7 @@ void treeList::printSubTree(string rt, string s)
 	{
 		if ((*it)->discussion->content == rt)//if content == "rt"
 		{
-			(*it)->searchPrintLeaf(s);
+			(*it)->searchPrintRoot(s);
 			return;
 		}	
 	}

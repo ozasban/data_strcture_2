@@ -65,7 +65,8 @@ void Tree::printTree()//print all tree
 		cout << this->discussion->content<<endl;
 	}
 	//call riqursive print node func to print all the sub tree
-	this->discussion->printNode(this->discussion->responses.begin(), this->discussion->responses.end(), 1);
+	if(!this->discussion->responses.empty())
+		this->discussion->printNode(this->discussion->responses.begin(), this->discussion->responses.end(), 1);
 	return;
 }
 

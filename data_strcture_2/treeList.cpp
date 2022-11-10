@@ -31,10 +31,15 @@ void treeList::deleteTree(Tree* t)
 
 void treeList::searchAndPrint(string val)
 {
+	
 	for (auto it = trees.begin(); it != trees.end(); it++)
 	{
-		(*it)->searchPrintRoot(val);//print from "val" until leaf
-		(*it)->searchPrintLeaf(val);// print until root froom val
+		if ((*it)->search(val))
+		{
+			(*it)->searchPrintRoot(val);//print from "val" until leaf
+			(*it)->searchPrintLeaf(val);// print until root froom val
+			return;
+		}
 		
 	} 
 }

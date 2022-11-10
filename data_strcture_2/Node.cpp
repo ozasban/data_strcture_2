@@ -23,7 +23,7 @@ Node::~Node()
 //searching title in node
 Node* Node::searchRec(list<Node*>::iterator itb , list<Node*>::iterator ite, string str)
 {
-	if (( * itb)->content.empty())//empty node
+	if (itb==ite)//empty node
 	{
 		return nullptr;
 	}
@@ -57,14 +57,17 @@ void Node::printNode(list<Node*>::iterator itb, list<Node*>::iterator ite,int ta
 	}
 	else
 	{
-		for (int i = 0; i < tab; i++)//print the amount of tubs that needed
+		if (!(*itb)->content.empty())
 		{
-			cout << "   ";
+			for (int i = 0; i < tab; i++)//print the amount of tubs that needed
+			{
+				cout << "   ";
+			}
+			cout << (*itb)->content << endl;//print the respons
 		}
-		cout << (*itb)->content<<endl;//print the respons
 	}
 	if(!((*itb)->responses.empty()))//check if there are respons
-		printNode((*itb)->responses.begin(), (*itb)->responses.end(), tab + 1);//print the respons for this node
+		printNode((*itb)->responses.begin(), (*itb)->responses.end(), tab+1);//print the respons for this node
 
 	if (itb == ite)//check that the list didnt over
 	{

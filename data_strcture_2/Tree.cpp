@@ -49,8 +49,8 @@ void Tree::delSubTree(string str)//delete the sub tree with the str content
 	{
 		root->responses.clear();
 		root->content.clear();
-		delete root;
-		root = nullptr;
+		/*delete root;
+		root = nullptr;*/
 	}
 }
 

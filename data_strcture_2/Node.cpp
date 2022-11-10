@@ -51,7 +51,7 @@ Node* Node::searchRec(list<Node*>::iterator itb , list<Node*>::iterator ite, str
 //printing the node and his respons in hierarchcal way(tab for the hirarchical)
 void Node::printNode(list<Node*>::iterator itb, list<Node*>::iterator ite,int tab)
 {
-	if (itb==ite|| (*itb)->content.empty())//if empty return
+	if (itb==ite)//if empty return
 	{
 		return ;
 	}

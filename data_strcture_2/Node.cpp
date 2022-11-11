@@ -44,7 +44,7 @@ Node* Node::searchRec(list<Node*>::iterator itb , list<Node*>::iterator ite, str
 			return nullptr;
 		}
 
-		return searchRec( itb++, ite,str);//searc in the next node
+		return searchRec( ++itb, ite,str);//searc in the next node
 
 	}
 }
@@ -116,7 +116,7 @@ void Node::printNodeIf(list<Node*>::iterator itb, list<Node*>::iterator ite, int
 
 void Node::printNodeToRoot(list<Node*>::iterator itb, list<Node*>::iterator ite, string str)
 {
-	if ((*itb)->content.empty())//empty node
+	if (itb==ite)//empty node
 	{
 		return;
 	}
@@ -129,12 +129,13 @@ void Node::printNodeToRoot(list<Node*>::iterator itb, list<Node*>::iterator ite,
 		}
 
 		//reqursive call to serche in the respons
-		if (!(*itb)->responses.empty())
+		if (!(*itb)->responses.empty()&&(*itb)->searchRec((*itb)->responses.begin(), (*itb)->responses.end(),str))
 		{
 			printNodeToRoot((*itb)->responses.begin(), (*itb)->responses.end(), str);
 			cout << (*itb)->content<< "=> ";
 			return;
 		}
+		printNodeToRoot(++itb, ite, str);
 
 	}
 }

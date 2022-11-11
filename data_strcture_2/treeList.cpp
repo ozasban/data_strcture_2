@@ -21,7 +21,7 @@ void treeList::addNewTree(string s)
 {
 	//addNewTree
 	Tree* t1 = new Tree(s);
-	trees.push_back(t1);
+	trees.push_front(t1);
 }
 
 void treeList::deleteTree(Tree* t)
@@ -66,7 +66,12 @@ bool treeList::delResponse(string rt, string res)
 	{
 		if ((*it)->discussion->content == rt)
 		{
-			if ((*it)->search(res))//if "res" found
+			if ((*it)->discussion->content == res)
+			{
+				this->trees.remove(*it);
+				return true;
+			}
+			else if ((*it)->search(res))//if "res" found
 			{
 				(*it)->delSubTree(res);
 				return true;
@@ -91,9 +96,12 @@ void treeList::printTree(string rt)
 
 void treeList::printAllTrees()
 {
+	int treenum = 1;
 	for (auto it = trees.begin(); it != trees.end(); it++)
 	{
+		cout << "Tree #" << treenum<<endl;
 		(*it)->printTree();
+		treenum++;
 	}
 }
 
@@ -104,6 +112,7 @@ void treeList::printSubTree(string rt, string s)
 		if ((*it)->discussion->content == rt)//if content == "rt"
 		{
 			(*it)->searchPrintRoot(s);
+			(*it)->searchPrintLeaf(s);
 			return;
 		}	
 	}

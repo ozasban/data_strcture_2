@@ -2,7 +2,7 @@
 #include <iostream>
 #include <list>
 #include <string>
-#include "tree.h"
+#include "Tree.h"
 /*oz asban 207565607
 binymin shapira 208965863
 data structure 2 exercise 1

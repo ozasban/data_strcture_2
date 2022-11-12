@@ -38,7 +38,6 @@ void treeList::searchAndPrint(string val)
 		{
 			(*it)->searchPrintRoot(val);//print from "val" until leaf
 			(*it)->searchPrintLeaf(val);// print until root froom val
-			return;
 		}
 		
 	} 

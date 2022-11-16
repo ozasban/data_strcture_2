@@ -25,15 +25,15 @@ protected:
 
 	int size;
 	Item<T, K>* arr;
-	bool prime(int n);
+	bool prime(int n);//+
 	int hash(K key, int i);
 	virtual int h1(K key) = 0;
 	virtual int h2(K key) = 0;
 public:
-	HashTable(int m = 10);
-	~HashTable();
+	HashTable(int m = 10);//+
+	~HashTable();//+
 	void add(K& key, T& dat);
-	int remove(K key);
+	int remove(K key);//+
 	int search(K key);
 	T* entryData(K i)
 	{
@@ -43,7 +43,7 @@ public:
 		else
 			return &(arr[ind].data);
 	}
-	void print();
+	virtual void print() = 0;
 };
 
 template<class T, class K>
@@ -74,20 +74,22 @@ template<class T, class K>
 HashTable<T, K>::HashTable(int m)
 {
 	//find the closest prime number
-	int i, j;
+	int i,// j;
 	for (i = m; !prime(i); i++);
-	for (j = m; !prime(j) ||i==1 ; j--);
-	if (i - m >= m - j)//check wich number is closser
-	{
-		size = j;
-		arr = new Item<T, K>[size];
-	}
+	this->size = i;
+	this->arr = new Item<T, K>[size];
+	////for (j = m; !prime(j) ||i==1 ; j--);
+	////if (i - m >= m - j)//check wich number is closser
+	////{
+	////	size = j;
+	////	arr = new Item<T, K>[size];
+	////}
 
-	else
-	{
-		size = i;
-		arr = new Item<T, K>[size];
-	}
+	////else
+	////{
+	////	size = i;
+	////	arr = new Item<T, K>[size];
+	////}
 }
 
 template<class T, class K>
@@ -106,7 +108,8 @@ template<class T, class K>
 		 j = hash(key, i);
 		 if (arr[j].state != full)
 		 {
-			 arr[j] = dat;
+			 arr[j].data = dat;
+			 arr[j].state = full;
 			 return;
 		 }
 		 else
@@ -134,5 +137,17 @@ template<class T, class K>
 		 }
 
 	 }
+	 return -1;
+ }
+ template<class T, class K>
+ inline int HashTable<T, K>::remove(K key)
+ {
+	 int index = this->search(key)
+	 if ( index != -1)
+	 {
+		 arr[index].state = deleted;
+		 return 1;
+	 }
+
 	 return -1;
  }

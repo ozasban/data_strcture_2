@@ -62,9 +62,17 @@ void HSubject::print()
 	}
 	l1.sort();
 	for (auto i = l1.begin(); i != l1.end(); i++)
-	{//print list
+	{
+		int index = this->search(*i);
+		cout << arr[index].key << ": ";
+			for (auto j = arr[index].data.begin(); j != arr[index].data.end(); j++)
+			{
+				cout << *j << " " ;
+			}
+			cout << endl;
 
 	}
+	///ואם לא עובד לעשות reverse
 }
 
 void HSubject::startNewTable()

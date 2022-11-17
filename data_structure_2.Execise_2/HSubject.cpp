@@ -44,18 +44,26 @@ void HSubject::printN(string ky, int N)
 void HSubject::print()
 {
 	cout << "All subjectsand titles:" << endl;
+
+	list<string> l1;
 	for (int i = 0; i < this->size; i++)
 	{
 		if (arr[i].flag == full)
 		{
-			cout << arr[i].key << ": ";
+			l1.push_front(arr[i].key);
+			/*cout << arr[i].key << ": ";
 			for (auto j = arr[i].data.begin(); j != arr[i].data.end(); i++)
 			{
 				cout << *j << " " ;
 			}
-			cout << endl;
+			cout << endl;*/
 
 		}
+	}
+	l1.sort();
+	for (auto i = l1.begin(); i != l1.end(); i++)
+	{//print list
+
 	}
 }
 
@@ -64,6 +72,8 @@ void HSubject::startNewTable()
 	for (int i = 0; i < size; i++)
 	{
 		arr[i].flag = empty;
+		arr[i].data.clear();
+		arr[i].key.clear();
 		
 	}
 }
@@ -77,7 +87,8 @@ void HSubject::addSubjectAndTitle(string s, string t)
 	}
 	else
 	{
-
-		this->add()
+		list<string> l1;
+		l1.push_front(t);
+		this->add(s, l1);
 	}
 }

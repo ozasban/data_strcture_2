@@ -55,7 +55,7 @@ bool HashTable<T, K>::prime(int n)
 	}
 
 	// loop to check if n is prime
-	for (i = 2; i <= n / 2; ++i) {
+	for (int i = 2; i <= n / 2; ++i) {
 		if (n % i == 0) {
 			return false;
 		}
@@ -74,8 +74,10 @@ template<class T, class K>
 HashTable<T, K>::HashTable(int m)
 {
 	//find the closest prime number
-	int i,// j;
-	for (i = m; !prime(i); i++);
+	int i;// j;
+		for (i = m; !prime(i); i++)
+		{
+		}
 	this->size = i;
 	this->arr = new Item<T, K>[size];
 	////for (j = m; !prime(j) ||i==1 ; j--);
@@ -103,13 +105,13 @@ template<class T, class K>
  void HashTable<T, K>::add(K& key, T& dat)
 {
 	 int i=0,j = 0;
-	 while ((i < (size))
+	 while (i < (size))
 	 {
 		 j = hash(key, i);
-		 if (arr[j].state != full)
+		 if (arr[j].flag != full)
 		 {
 			 arr[j].data = dat;
-			 arr[j].state = full;
+			 arr[j].flag = full;
 			 return;
 		 }
 		 else
@@ -123,7 +125,7 @@ template<class T, class K>
  int HashTable<T, K>::search(K key)
  {
 	 int i = 0, j = hash(key, i);
-	 while (i < (size)&&arr[j].state!=empty)
+	 while (i < (size)&&arr[j].flag !=empty)
 	 {
 		 j = hash(key, i);
 		 if (arr[j].key == key)
@@ -142,10 +144,10 @@ template<class T, class K>
  template<class T, class K>
  inline int HashTable<T, K>::remove(K key)
  {
-	 int index = this->search(key)
+	 int index = this->search(key);
 	 if ( index != -1)
 	 {
-		 arr[index].state = deleted;
+		 arr[index].flag = deleted;
 		 return 1;
 	 }
 

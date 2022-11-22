@@ -27,10 +27,12 @@ void HSubject::printN(string ky, int N)
 	if (index != -1)
 	{
 		auto j = arr[index].data.begin();
-		for (int i = 0; i < N; i++)
+		for (int i = 0; i < N && j != arr[index].data.end(); i++)
 		{
-			cout << *j << " " << endl;
+			cout << *j << " ";
+			j++;
 		}
+		cout << endl;
 		///Subject subject1 4 topics:
 		///title4 title3 title2 title1
 
@@ -77,6 +79,8 @@ void HSubject::print()
 
 void HSubject::startNewTable()
 {
+
+
 	for (int i = 0; i < size; i++)
 	{
 		arr[i].flag = empty;

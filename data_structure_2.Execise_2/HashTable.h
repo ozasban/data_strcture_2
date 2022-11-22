@@ -110,6 +110,7 @@ template<class T, class K>
 		 j = hash(key, i);
 		 if (arr[j].flag != full)
 		 {
+			 arr[j].key = key;
 			 arr[j].data = dat;
 			 arr[j].flag = full;
 			 return;

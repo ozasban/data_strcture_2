@@ -5,6 +5,15 @@
 using namespace std;
 #include "HashTable.h"
 
+/*
+oz asban 207565607
+binymin shapira 208965863
+data structure 2 exercise 2
+class for "HSubject" that hirited from class HashTable<list<string>, string>
+
+*/
+
+
 const int MAX = 1000;
 
 

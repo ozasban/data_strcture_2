@@ -3,7 +3,12 @@
 #include <string>
 using namespace std;
 
-
+/*
+oz asban 207565607
+binymin shapira 208965863
+data structure 2 exercise 2
+class for tamplate "HashTable"
+*/
 
 template <class T, class K>
 class HashTable

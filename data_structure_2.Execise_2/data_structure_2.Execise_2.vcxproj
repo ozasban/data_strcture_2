@@ -127,7 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="HashTable.cpp" />
     <ClCompile Include="HSubject.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

@@ -1,4 +1,10 @@
 #include "HSubject.h"
+/*
+oz asban 207565607
+binymin shapira 208965863
+data structure 2 exercise 2
+class for HSubject .cpp
+*/
 
 void HSubject::printS(string ky)
 {

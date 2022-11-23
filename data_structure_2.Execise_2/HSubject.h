@@ -24,7 +24,9 @@ class HSubject :public HashTable<list<string>, string>
 	int key(string s) { return (int)s[0] + (int)s[1] + (int)s[s.length() - 1]; }
 
 public:
+	//data
 	HSubject(int n) :HashTable <list<string>, string>(n) {}
+	//methods
 	int h1(string s) { return key(s) % size; }
 	int h2(string s) { return (key(s) % (size - 1) + 1) % size; }
 	void printS(string ky);

@@ -6,69 +6,74 @@ data structure 2 exercise 2
 class for HSubject .cpp
 */
 
+/// <summary>
+/// print one subject 
+/// </summary>
+/// <param name="ky">string</param>
 void HSubject::printS(string ky)
 {
 	int index = this->search(ky);
+	//if found
 	if (index != -1)
 	{
 		cout << "Subject " << ky << " " << arr[index].data.size() << " topics:" << endl;
+		//iterator that run about all the array
 		for (auto i = arr[index].data.begin(); i != arr[index].data.end(); i++)
 		{
 			cout << *i << " ";
 		}
 		cout << endl;
-		///Subject subject1 4 topics:
-		///title4 title3 title2 title1
 
 	}
-	else
+	else//if not found
 	{
 		cout << "ERROR" << endl;
 	}
 }
-
+/// <summary>
+/// print one subject according "N"
+/// </summary>
+/// <param name="ky">string </param>
+/// <param name="N">int</param>
 void HSubject::printN(string ky, int N)
 {
 	int index = this->search(ky);
-	if (index != -1)
+	if (index != -1)//if found
 	{
 		auto j = arr[index].data.begin();
+		//iterator that run about part off the array according "N"
 		for (int i = 0; i < N && j != arr[index].data.end(); i++)
 		{
 			cout << *j << " ";
 			j++;
 		}
 		cout << endl;
-		///Subject subject1 4 topics:
-		///title4 title3 title2 title1
 
 	}
-	else
+	else//if not found
 	{
 		cout << "ERROR" << endl;
 	}
 }
-
+/// <summary>
+/// print all the HSubject
+/// </summary>
 void HSubject::print()
 {
 	cout << "All subjects and titles:" << endl;
-
+	//for sort the list
 	list<string> l1;
+	//if the index isn't empty push it to the list "l1"
 	for (int i = 0; i < this->size; i++)
 	{
 		if (arr[i].flag == full)
 		{
 			l1.push_front(arr[i].key);
-			/*cout << arr[i].key << ": ";
-			for (auto j = arr[i].data.begin(); j != arr[i].data.end(); i++)
-			{
-				cout << *j << " " ;
-			}
-			cout << endl;*/
-
 		}
 	}
+	//sort l1
 	l1.sort();
+	//print
 	for (auto i = l1.begin(); i != l1.end(); i++)
 	{
 		int index = this->search(*i);
@@ -80,13 +85,13 @@ void HSubject::print()
 			cout << endl;
 
 	}
-	///ואם לא עובד לעשות reverse
-}
 
+}
+/// <summary>
+/// Initializes the array
+/// </summary>
 void HSubject::startNewTable()
 {
-
-
 	for (int i = 0; i < size; i++)
 	{
 		arr[i].flag = empty;
@@ -95,9 +100,14 @@ void HSubject::startNewTable()
 		
 	}
 }
-
+/// <summary>
+/// add Subject And Title to HSubject
+/// </summary>
+/// <param name="s"></param>
+/// <param name="t"></param>
 void HSubject::addSubjectAndTitle(string s, string t)
 {
+
 	int index = this->search(s);
 	if (index != -1)
 	{

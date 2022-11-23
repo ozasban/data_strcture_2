@@ -14,7 +14,7 @@ template <class T, class K>
 class HashTable
 {
 protected:
-
+	//data
 	enum state { empty, full, deleted };
 	template <class U, class V>
 	class Item
@@ -30,6 +30,7 @@ protected:
 
 	int size;
 	Item<T, K>* arr;
+	//methods
 	bool prime(int n);//+
 	int hash(K key, int i);
 	virtual int h1(K key) = 0;
@@ -50,6 +51,9 @@ public:
 	}
 	virtual void print() = 0;
 };
+/// <summary>
+/// returns if n is prime
+/// </summary>
 
 template<class T, class K>
 bool HashTable<T, K>::prime(int n)
@@ -67,6 +71,9 @@ bool HashTable<T, K>::prime(int n)
 	}
 	return is_prime;
 }
+/// <summary>
+/// the hash function
+/// </summary>
 
 template<class T, class K>
 int HashTable<T, K>::hash(K key, int i)
@@ -74,37 +81,32 @@ int HashTable<T, K>::hash(K key, int i)
 	return (h1(key) + i * h2(key)) % size;
 
 }
+/// <summary>
+/// build a hashtable with the closest prime num to m
+/// </summary>
 
 template<class T, class K>
 HashTable<T, K>::HashTable(int m)
 {
 	//find the closest prime number
-	int i;// j;
+	int i;
 	for (i = m; !prime(i); i++)
 	{
 	}
 	this->size = i;
 	this->arr = new Item<T, K>[size];
-	////for (j = m; !prime(j) ||i==1 ; j--);
-	////if (i - m >= m - j)//check wich number is closser
-	////{
-	////	size = j;
-	////	arr = new Item<T, K>[size];
-	////}
 
-	////else
-	////{
-	////	size = i;
-	////	arr = new Item<T, K>[size];
-	////}
 }
-
+//dtor
 template<class T, class K>
 HashTable<T, K>::~HashTable()
 {
 	delete[] arr;
 
 }
+/// <summary>
+/// adding organ to the hashTable in the correct place
+/// </summary>
 
 template<class T, class K>
 void HashTable<T, K>::add(K& key, T& dat)
@@ -113,7 +115,7 @@ void HashTable<T, K>::add(K& key, T& dat)
 	while (i < (size))
 	{
 		j = hash(key, i);
-		if (arr[j].flag != full)
+		if (arr[j].flag != full)//do the input only if not full
 		{
 			arr[j].key = key;
 			arr[j].data = dat;
@@ -126,6 +128,9 @@ void HashTable<T, K>::add(K& key, T& dat)
 	}
 	cout << "hashTable overflow" << endl;
 }
+/// <summary>
+/// searching item in the table return -1 if not found
+/// </summary>
 
 template<class T, class K>
 int HashTable<T, K>::search(K key)
@@ -151,6 +156,10 @@ int HashTable<T, K>::search(K key)
 	}
 	return -1;
 }
+/// <summary>
+/// remove item from the table
+/// </summary>
+
 template<class T, class K>
 inline int HashTable<T, K>::remove(K key)
 {

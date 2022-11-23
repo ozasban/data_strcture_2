@@ -11,15 +11,15 @@ class HashTable
 protected:
 
 	enum state { empty, full, deleted };
-	template <class T, class K>
+	template <class U, class V>
 	class Item
 	{
 	public:
-		T data;
-		K key;
+		U data;
+		V key;
 		state flag;
 		Item() {}
-		Item(T d, K k, state f) { data = d; key = k; flag = f; }
+		Item(U d, V k, state f) { data = d; key = k; flag = f; }
 	};
 
 
@@ -66,7 +66,7 @@ bool HashTable<T, K>::prime(int n)
 template<class T, class K>
 int HashTable<T, K>::hash(K key, int i)
 {
-	return (h1(key) + i*h2(key))%size;
+	return (h1(key) + i * h2(key)) % size;
 
 }
 
@@ -75,9 +75,9 @@ HashTable<T, K>::HashTable(int m)
 {
 	//find the closest prime number
 	int i;// j;
-		for (i = m; !prime(i); i++)
-		{
-		}
+	for (i = m; !prime(i); i++)
+	{
+	}
 	this->size = i;
 	this->arr = new Item<T, K>[size];
 	////for (j = m; !prime(j) ||i==1 ; j--);
@@ -102,55 +102,59 @@ HashTable<T, K>::~HashTable()
 }
 
 template<class T, class K>
- void HashTable<T, K>::add(K& key, T& dat)
+void HashTable<T, K>::add(K& key, T& dat)
 {
-	 int i=0,j = 0;
-	 while (i < (size))
-	 {
-		 j = hash(key, i);
-		 if (arr[j].flag != full)
-		 {
-			 arr[j].key = key;
-			 arr[j].data = dat;
-			 arr[j].flag = full;
-			 return;
-		 }
-		 else
-			 i++;
+	int i = 0, j = 0;
+	while (i < (size))
+	{
+		j = hash(key, i);
+		if (arr[j].flag != full)
+		{
+			arr[j].key = key;
+			arr[j].data = dat;
+			arr[j].flag = full;
+			return;
+		}
+		else
+			i++;
 
-	 }
-	 cout << "hashTable overflow" << endl;
+	}
+	cout << "hashTable overflow" << endl;
 }
 
- template<class T, class K>
- int HashTable<T, K>::search(K key)
- {
-	 int i = 0, j = hash(key, i);
-	 while (i < (size)&&arr[j].flag !=empty)
-	 {
-		 j = hash(key, i);
-		 if (arr[j].key == key)
-		 {
-			 return j;
-		 }
-		 else
-		 {
-			 i++;
-			 j = hash(key, i);
-		 }
+template<class T, class K>
+int HashTable<T, K>::search(K key)
+{
+	int i = 0, j = hash(key, i);
+	while (i < (size) && arr[j].flag != empty)
+	{
+		j = hash(key, i);
+		if (arr[j].key == key)
+		{
+			if (arr[j].flag == deleted)
+			{
+				return -1;
+			}
+			return j;
+		}
+		else
+		{
+			i++;
+			j = hash(key, i);
+		}
 
-	 }
-	 return -1;
- }
- template<class T, class K>
- inline int HashTable<T, K>::remove(K key)
- {
-	 int index = this->search(key);
-	 if ( index != -1)
-	 {
-		 arr[index].flag = deleted;
-		 return 1;
-	 }
+	}
+	return -1;
+}
+template<class T, class K>
+inline int HashTable<T, K>::remove(K key)
+{
+	int index = this->search(key);
+	if (index != -1)
+	{
+		arr[index].flag = deleted;
+		return 1;
+	}
 
-	 return -1;
- }
+	return -1;
+}

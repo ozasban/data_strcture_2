@@ -45,7 +45,7 @@ void HSubject::printN(string ky, int N)
 
 void HSubject::print()
 {
-	cout << "All subjectsand titles:" << endl;
+	cout << "All subjects and titles:" << endl;
 
 	list<string> l1;
 	for (int i = 0; i < this->size; i++)

@@ -4,6 +4,12 @@
 #include <iostream>
 #include <string>
 using namespace std;
+/*
+oz asban 207565607
+binymin shapira 208965863
+data structure 2 exercise 3
+class for trie  .h
+*/
 
 // Alphabet size (# of symbols) 
 #define ALPHABET_SIZE (26) 
@@ -11,6 +17,9 @@ using namespace std;
 // Converts key current character into index 
 // use only 'a' through 'z' and lower case 
 #define CHAR_TO_INDEX(c) ((int)c - (int)'a') 
+// Converts childrens current index into character
+// use only 'a' through 'z' and lower case 
+#define INDEX_TO_CHAR(c) ((char)((int)c + (int)'a')) 
 
 // trie node 
 struct TrieNode
@@ -25,16 +34,16 @@ struct TrieNode
 
 
 TrieNode* getNode(void);
-bool isLastNode(TrieNode* root);
-bool insertT(TrieNode* root, string key);
+bool isLastNode(TrieNode* Root);
+bool insertT(TrieNode* Root, string key);
 bool isLowerCase(string key);
-bool delT(TrieNode* root, string key);
-bool delR(TrieNode* prev, TrieNode* root, string key, int ind);
-bool searchT(TrieNode* root, string key);
-void suggestionsRec(TrieNode* root, string currPrefix);
-int printAutoSuggestionsT(TrieNode* root, string query);
+bool delT(TrieNode* Root, string key);
+//bool delR(TrieNode* prev, TrieNode* root, string key, int ind);
+bool searchT(TrieNode* Root, string key);
+void suggestionsRec(TrieNode* Root, string currPrefix);
+int printAutoSuggestionsT(TrieNode* Root, string query);
 void printT(TrieNode* t, int level);
-bool haveNoChildren(TrieNode* root);
+bool haveNoChildren(TrieNode* Root);
 
 
 

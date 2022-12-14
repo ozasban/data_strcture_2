@@ -110,20 +110,19 @@ bool delT(TrieNode* root, string key)
        //if the last letter have no childrens delete the node
         if (haveNoChildren(lastL))
         {
-            //TrieNode* temp = lastL;
+           
             lastL = lastL->parent;
             lastL->children[CHAR_TO_INDEX(key[key.length() - 1])] = nullptr;
-            //temp = nullptr;
-           // delete temp;
+            
             //if the parent have no children do the same
-            for (int i = 0; i < key.length() - 1; i++)
+            for (int i = 0; i < key.length() - 1&&!lastL->isWordEnd; i++)
             {
                 if (haveNoChildren(lastL))
                 {
-                    //TrieNode* temp = lastL;
+                    
                     lastL = lastL->parent;
                     lastL->children[CHAR_TO_INDEX(key[key.length() - i - 2])] = nullptr;
-                    //temp = nullptr;
+                    
                 }
                 else
                     break;
